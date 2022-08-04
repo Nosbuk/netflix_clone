@@ -7,6 +7,10 @@ import { requests } from "../requests";
 
 export const Main = () => {
   const [movies, setMovies] = useState([]);
+  const randomMovie =
+    movies[
+      Math.floor(Math.random() * movies.length)
+    ];
 
   useEffect(() => {
     axios
@@ -15,7 +19,7 @@ export const Main = () => {
         setMovies(response.data.results);
       });
   }, []);
-  console.log(movies);
+  console.log(randomMovie);
 
   return <div>Main</div>;
 };
