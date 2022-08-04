@@ -7,10 +7,6 @@ import { requests } from "../requests";
 
 export const Main = () => {
   const [movies, setMovies] = useState([]);
-  const randomMovie =
-    movies[
-      Math.floor(Math.random() * movies.length)
-    ];
 
   useEffect(() => {
     axios
@@ -19,7 +15,19 @@ export const Main = () => {
         setMovies(response.data.results);
       });
   }, []);
-  console.log(randomMovie);
+  const randomMovie =
+    movies[
+      Math.floor(Math.random() * movies.length)
+    ];
 
-  return <div>Main</div>;
+  return (
+    <div className="w-full h-[550px] text-white">
+      <div className="w-full h-full">
+        <img
+          src={`https://image.tmdb.org/t/p/original/${randomMovie?.backdrop_path}`}
+          alt={randomMovie?.title}
+        />
+      </div>
+    </div>
+  );
 };
