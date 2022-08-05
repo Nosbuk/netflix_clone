@@ -23,6 +23,34 @@ export const Home = () => {
         title="Top Rated"
         fetchURL={requests.topRated}
       />
+      <Row
+        title="Horror"
+        fetchURL={requests.horror}
+      />
+      <Row
+        title="Comedy"
+        fetchURL={requests.comedy}
+      />
+      <Row
+        title="Romance"
+        fetchURL={requests.romance}
+      />
+      <Row
+        title="Drama"
+        fetchURL={requests.drama}
+      />
+      <Row
+        title="Action"
+        fetchURL={requests.action}
+      />
+      <Row
+        title="Crime"
+        fetchURL={requests.crime}
+      />
+      <Row
+        title="Western"
+        fetchURL={requests.western}
+      />
     </>
   );
 };
