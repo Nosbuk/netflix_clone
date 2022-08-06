@@ -14,9 +14,12 @@ export const MovieMiniature = ({ movie }) => {
         alt={movie?.title}
       />
       <div className="absolute top-0 left-0 w-full h-full text-white opacity-0 hover:opacity-100 hover:bg-black/80">
-        <p className="flex items-center justify-center h-full font-bold text-center white-space-normal text-xd md:text-small">
+        <div
+          className="flex
+        whitespace-normal items-center justify-center w-full h-full text-xs font-bold text-center md:text-small max-w-[90%] mx-auto"
+        >
           {movie?.title}
-        </p>
+        </div>
         {like ? (
           <FaHeart className="absolute text-gray-300 top-4 left-4" />
         ) : (
