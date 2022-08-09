@@ -10,12 +10,16 @@ export const Navbar = () => {
         </h1>
       </Link>
       <div>
-        <button className="pr-4 text-white">
-          Sign In
-        </button>
-        <button className="px-6 py-2 text-white bg-red-600 rounded cursor-pointer">
-          Sign Up
-        </button>
+        <Link to="/login">
+          <button className="pr-4 text-white">
+            Sign In
+          </button>
+        </Link>
+        <Link to="signup">
+          <button className="px-6 py-2 text-white bg-red-600 rounded cursor-pointer">
+            Sign Up
+          </button>
+        </Link>
       </div>
     </nav>
   );
