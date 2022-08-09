@@ -15,7 +15,7 @@ export const Login = () => {
           <div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
             <div className="max-w-[320px] mx-auto py-16">
               <h4 className="text-3xl font-bold">
-                Login
+                Sign In
               </h4>
               <form className="flex flex-col w-full py-4">
                 <input
@@ -32,7 +32,7 @@ export const Login = () => {
                 />
                 <input
                   type="submit"
-                  value="Sign Up"
+                  value="Sign In"
                   className="py-3 my-6 font-bold bg-red-600 rounded"
                 />
                 <div className="flex items-center justify-between text-sm text-gray-600">
@@ -49,7 +49,9 @@ export const Login = () => {
                   <span className="mr-2 text-gray-600">
                     Need account?
                   </span>
-                  <Link to="/login">Sign Up</Link>
+                  <Link to="/signup">
+                    Sign Up
+                  </Link>
                 </p>
               </form>
             </div>
