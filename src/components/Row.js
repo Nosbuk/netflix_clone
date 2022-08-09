@@ -26,7 +26,6 @@ export const Row = ({ title, fetchURL }) => {
     if (direction === "right")
       sliderRef.current.scrollLeft += 500;
   };
-  console.log(title, movies);
   return (
     <>
       <h2 className="p-4 font-bold text-white md:text-xl">
