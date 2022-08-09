@@ -5,7 +5,7 @@ import {
   useState,
 } from "react";
 
-import auth from "../firebase";
+import { auth } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -27,7 +27,7 @@ export const AuthContextProvider = ({
       password
     );
   const logOut = () => signOut();
-  const logIn = () =>
+  const logIn = (email, password) =>
     signInWithEmailAndPassword(
       auth,
       email,
