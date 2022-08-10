@@ -1,7 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import {
+  Link,
+  useNavigate,
+} from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 
 export const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { user, logIn } = UserAuth();
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await logIn(email, password);
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
   return (
     <>
       <div className="w-full h-screen">
@@ -17,14 +36,30 @@ export const Login = () => {
               <h4 className="text-3xl font-bold">
                 Sign In
               </h4>
-              <form className="flex flex-col w-full py-4">
+              {error && (
+                <p className="p-3 my-2 bg-red-400">
+                  {error}
+                </p>
+              )}
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col w-full py-4"
+              >
                 <input
+                  onChange={(event) =>
+                    setEmail(event.target.value)
+                  }
                   type="email"
                   placeholder="Email"
                   autoComplete="email"
                   className="p-3 my-2 bg-gray-700 rounded"
                 />
                 <input
+                  onChange={(event) =>
+                    setPassword(
+                      event.target.value
+                    )
+                  }
                   type="password"
                   placeholder="Password"
                   autoComplete="current-password"
