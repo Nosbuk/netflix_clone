@@ -3,9 +3,39 @@ import {
   FaHeart,
   FaRegHeart,
 } from "react-icons/fa";
+import { UserAuth } from "../context/AuthContext";
+import { db } from "../firebase";
+import {
+  arrayUnion,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 export const MovieMiniature = ({ movie }) => {
   const [like, setLike] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const { user } = UserAuth();
+  const movieID = doc(
+    db,
+    "users",
+    `${user?.email}`
+  );
+
+  const saveMovie = async () => {
+    if (user?.email) {
+      setLike((prev) => !prev);
+      setSaved(true);
+      await updateDoc(movieID, {
+        savedShows: arrayUnion({
+          id: movie.id,
+          title: movie.title,
+          img: movie.backdrop_path,
+        }),
+      });
+    } else {
+      alert("Login to save movie");
+    }
+  };
   return (
     <div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
       <img
@@ -20,11 +50,13 @@ export const MovieMiniature = ({ movie }) => {
         >
           {movie?.title}
         </div>
-        {like ? (
-          <FaHeart className="absolute text-gray-300 top-4 left-4" />
-        ) : (
-          <FaRegHeart className="absolute text-gray-300 top-4 left-4" />
-        )}
+        <button onClick={saveMovie}>
+          {like ? (
+            <FaHeart className="absolute text-gray-300 top-4 left-4" />
+          ) : (
+            <FaRegHeart className="absolute text-gray-300 top-4 left-4" />
+          )}
+        </button>
       </div>
     </div>
   );

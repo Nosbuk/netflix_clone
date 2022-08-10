@@ -5,14 +5,14 @@ import {
   useState,
 } from "react";
 
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-
+import { setDoc, doc } from "firebase/firestore";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({
@@ -20,12 +20,16 @@ export const AuthContextProvider = ({
 }) => {
   const [user, setUser] = useState({});
 
-  const signUp = (email, password) =>
+  const signUp = (email, password) => {
     createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+    setDoc(doc(db, "users", email), {
+      savedShows: [],
+    });
+  };
   const logOut = () => signOut(auth);
   const logIn = (email, password) =>
     signInWithEmailAndPassword(
