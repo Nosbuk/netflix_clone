@@ -26,7 +26,7 @@ export const AuthContextProvider = ({
       email,
       password
     );
-  const logOut = () => signOut();
+  const logOut = () => signOut(auth);
   const logIn = (email, password) =>
     signInWithEmailAndPassword(
       auth,

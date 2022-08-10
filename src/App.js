@@ -6,6 +6,7 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { Account } from "./pages/Account";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 export const App = () => {
   return (
     <>
@@ -23,7 +24,11 @@ export const App = () => {
           />
           <Route
             path="/account"
-            element={<Account />}
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
           />
         </Routes>
       </AuthContextProvider>
